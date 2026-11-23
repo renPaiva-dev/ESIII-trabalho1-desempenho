@@ -1,6 +1,6 @@
 # Plano e Relatório de Teste de Desempenho
 
-Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B – Desafio B (consulta de minicursos)   Data: 17/11/2026 (plano); 18/11/2026 e 22/11/2026 (execuções)
+Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B – Desafio B (consulta de minicursos)   Data: 17/11/2026 (plano); 18/11, 22/11 e 23/11/2026 (execuções)
 
 > Observação: o plano (seção 1) foi escrito em 17/11/2026, antes das execuções, no modelo da disciplina. As execuções seguiram esses parâmetros (operações, proporção, fases, repetições e metas). A exceção foi o critério de parada, que na rodada de 18/11 não foi aplicado (ver abaixo).
 >
@@ -16,7 +16,7 @@ Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B �
 | Think time (pausa entre ações) | 0,2 a 0,6 s (`between(0.2, 0.6)`) |
 | Massa de dados | Não se aplica: as duas operações só leem os 3 cursos fixos do sistema. |
 | Perfis (usuários, ritmo, duração) | Verificação: 1 usuário, 15 s. Referência: 5 usuários (r = 1/s), 90 s. Carga: 20 (r = 2/s), 90 s. Estresse 1: 50 (r = 5/s), 90 s. Estresse 2: 100 (r = 10/s), até 90 s. Recuperação: 20 (r = 2/s), 90 s, iniciada logo após o Estresse 2. Pico: não exigido no Desafio B. |
-| Repetições | 3 por patamar (r1, r2, r3). A verificação inicial foi feita 1 vez. |
+| Repetições | 3 por patamar (r1, r2, r3), incluindo a verificação inicial. |
 | Metas (SLA) | p95 ≤ 500 ms; falhas ≤ 1%; recuperação às metas em até 30 s com 20 usuários. |
 | Critério de parada | Interromper se a máquina ficar instável, se as falhas passarem de 20% por 10 s ou se o p95 passar de 2000 ms por 10 s. Automatizado no script a partir de 22/11: a cada segundo ele calcula a taxa de falhas daquele segundo e o p95 recente; com 10 segundos seguidos acima do limite, encerra o teste e registra `[PARADA]` no log. |
 
@@ -28,7 +28,7 @@ python -m locust -f pacote-B/desafio/desafio_locust.py --host http://127.0.0.1:8
 
 ## 2. Ambiente
 
-| Item | Rodada de 18/11 (verificação, referência, carga, estresse 1) | Rodada de 22/11 (estresse 2 e recuperação) |
+| Item | Rodada de 18/11 (verificação r1, referência, carga, estresse 1) e de 23/11 (verificação r2 e r3), na mesma máquina | Rodada de 22/11 (estresse 2 e recuperação) |
 |---|---|---|
 | Processador / memória | Intel Core i7-13620H / 16 GB (15 GB utilizáveis; GPU RTX 3050, não usada pelo teste) | Intel Core i5-13420H / 8 GB (7,7 GB utilizáveis; GPU RTX 2050 4 GB, não usada pelo teste) |
 | Sistema operacional | Ubuntu 24.04.5 LTS | Windows 11 Home |
@@ -48,7 +48,7 @@ Fonte única: os arquivos `resultados/pacote-B/desafio/*_stats.csv` e `*_stats_h
 
 | Patamar | Usuários | Requisições (r1 / r2 / r3) | p50 | p95 | req/s (média) | Falhas | Meta |
 |---|---|---|---|---|---|---|---|
-| Verificação | 1 | 33 | 36 ms | 37 ms | 2,4 | 0% | atende |
+| Verificação | 1 | 33 / 34 / 31 | 32–36 ms | 33–37 ms | 2,4 | 0% | atende |
 | Referência | 5 | 1001 / 992 / 1007 | 35 ms | 36–37 ms | 11,2 | 0% | atende |
 | Carga | 20 | 3880 / 3918 / 3887 | 35 ms | 37 ms | 43,7 | 0% | atende |
 | Estresse 1 | 50 | 9490 / 9534 / 9520 | 40 ms | 71–75 ms | 106,6 | 0,00–0,02% | atende |
@@ -127,7 +127,7 @@ Interpretação: o sistema tem atraso fixo e não usa banco nem disco, por isso 
 - As execuções originais do Estresse 2 (18/11, em `resultados/pacote-B/desafio/execucao_18-11_sem_parada/`) não respeitaram o critério de parada: rodaram os 90 s com ≈ 31% de falhas. Foram substituídas pelas de 22/11 e mantidas só como registro.
 - Servidor e Locust rodaram na mesma máquina, disputando o mesmo processador.
 - O limite de 4 consultas simultâneas e o atraso de 30 ms são artificiais (o próprio README do pacote avisa). Os números servem para estudar as métricas, não para estimar a capacidade de um sistema real.
-- A verificação inicial foi feita uma vez e não tem arquivo `.log`.
+- A verificação r1 (18/11) não tem arquivo `.log`. A r2 e a r3 foram feitas em 23/11, na mesma máquina de 18/11, e deram o mesmo resultado (0% de falhas, p95 de 33 ms).
 
 ### Recomendações
 

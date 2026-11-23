@@ -115,7 +115,7 @@ python -m locust -f pacote-B/desafio/desafio_locust.py --host http://127.0.0.1:8
 
 | NOME | U (usuários) | R (por segundo) | T (duração) | Repetições |
 |---|---|---|---|---|
-| verificacao | 1 | 1 | 15s | 1 |
+| verificacao | 1 | 1 | 15s | 3 |
 | ref5 | 5 | 1 | 90s | 3 |
 | carga20 | 20 | 2 | 90s | 3 |
 | estresse50 | 50 | 5 | 90s | 3 |

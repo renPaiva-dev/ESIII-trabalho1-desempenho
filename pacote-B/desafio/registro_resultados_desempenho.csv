@@ -1,5 +1,7 @@
 cenario,execucao,data,tipo_teste,usuarios,ritmo_r,duracao_s,requisicoes,p50_ms,p95_ms,req_s,falhas_pct,decisao,justificativa
 Desafio B - minicursos,r1,2026-11-18,verificacao,1,1,15,33,36,37,2.38,0.00,atende,script verificado: status e conteudo corretos com 1 usuario
+Desafio B - minicursos,r2,2026-11-23,verificacao,1,1,15,34,32,33,2.44,0.00,atende,script verificado: status e conteudo corretos com 1 usuario
+Desafio B - minicursos,r3,2026-11-23,verificacao,1,1,15,31,32,33,2.25,0.00,atende,script verificado: status e conteudo corretos com 1 usuario
 Desafio B - minicursos,r1,2026-11-18,referencia,5,1,90,1001,35,37,11.23,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
 Desafio B - minicursos,r2,2026-11-18,referencia,5,1,90,992,35,36,11.13,0.00,atende,p95 36 ms <= 500 e falhas 0.00% <= 1%
 Desafio B - minicursos,r3,2026-11-18,referencia,5,1,90,1007,36,37,11.30,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
