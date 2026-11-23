@@ -1,0 +1,8 @@
+[2026-11-22 20:12:21,655] Renato/INFO/locust.main: Starting Locust 2.47.0
+[2026-11-22 20:12:21,657] Renato/INFO/locust.main: Run time limit set to 90 seconds
+[2026-11-22 20:12:21,696] Renato/INFO/root: [MASSA] produtos A=5 B=6; vendas ja gravadas=610
+[2026-11-22 20:12:21,696] Renato/INFO/locust.runners: Ramping to 50 users at a rate of 5.00 per second
+[2026-11-22 20:12:30,761] Renato/INFO/locust.runners: All users spawned: {"Operador": 50} (50 total users)
+[2026-11-22 20:13:51,293] Renato/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-22 20:13:53,546] Renato/WARNING/root: [CONSISTENCIA] DIVERGENTE: vendas gravadas=1274; baixa A=1148 (esperado 1274); baixa B=2302 (esperado 2548); baixas perdidas A=126 B=246
+[2026-11-22 20:13:53,549] Renato/INFO/locust.main: Shutting down (exit code 0)

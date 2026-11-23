@@ -1,0 +1,17 @@
+﻿cenario,execucao,data,tipo_teste,usuarios,ritmo_r,duracao_s,requisicoes,p50_ms,p95_ms,req_s,falhas_pct,decisao,justificativa
+StockMaster,r1,2026-11-22,verificacao,1,1,17,15,6,140,1.04,0.00,atende,p95 por operacao e falhas dentro das metas; estoque consistente
+StockMaster,r1,2026-11-22,referencia,5,1,92,434,5,9,4.85,0.00,nao atende,p95 e falhas dentro das metas; mas 1 de 136 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r2,2026-11-22,referencia,5,1,92,442,5,9,4.93,0.00,nao atende,p95 e falhas dentro das metas; mas 4 de 137 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r3,2026-11-22,referencia,5,1,92,430,5,11,4.81,0.00,nao atende,p95 e falhas dentro das metas; mas 3 de 121 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r1,2026-11-22,carga,20,2,92,1687,3,5,18.84,0.00,nao atende,p95 e falhas dentro das metas; mas 20 de 521 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r2,2026-11-22,carga,20,2,92,1680,3,7,18.75,0.00,nao atende,p95 e falhas dentro das metas; mas 28 de 473 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r3,2026-11-22,carga,20,2,93,1702,3,7,18.99,0.00,nao atende,p95 e falhas dentro das metas; mas 18 de 496 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r1,2026-11-22,estresse,50,5,93,4204,2,4,46.85,0.00,nao atende,p95 e falhas dentro das metas; mas 127 de 1239 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r2,2026-11-22,estresse,50,5,93,4242,3,5,47.33,0.00,nao atende,p95 e falhas dentro das metas; mas 126 de 1274 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r3,2026-11-22,estresse,50,5,92,4236,3,5,47.26,0.00,nao atende,p95 e falhas dentro das metas; mas 125 de 1347 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r1,2026-11-22,estresse,100,10,92,8493,2,5,94.67,0.00,nao atende,p95 e falhas dentro das metas; mas 370 de 2540 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r2,2026-11-22,estresse,100,10,93,8543,2,7,95.10,0.00,nao atende,p95 e falhas dentro das metas; mas 298 de 2598 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r3,2026-11-22,estresse,100,10,93,8506,2,7,94.63,0.00,nao atende,p95 e falhas dentro das metas; mas 289 de 2558 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r1,2026-11-22,recuperacao,20,2,92,1703,2,5,19.01,0.00,nao atende,p95 e falhas dentro das metas; mas 24 de 509 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r2,2026-11-22,recuperacao,20,2,93,1699,2,8,18.92,0.00,nao atende,p95 e falhas dentro das metas; mas 25 de 533 vendas sem baixa de estoque (meta: 0 - DEF-05)
+StockMaster,r3,2026-11-22,recuperacao,20,2,93,1701,2,8,18.98,0.00,nao atende,p95 e falhas dentro das metas; mas 18 de 486 vendas sem baixa de estoque (meta: 0 - DEF-05)

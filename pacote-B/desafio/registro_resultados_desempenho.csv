@@ -1,0 +1,17 @@
+cenario,execucao,data,tipo_teste,usuarios,ritmo_r,duracao_s,requisicoes,p50_ms,p95_ms,req_s,falhas_pct,decisao,justificativa
+Desafio B - minicursos,r1,2026-11-18,verificacao,1,1,15,33,36,37,2.38,0.00,atende,script verificado: status e conteudo corretos com 1 usuario
+Desafio B - minicursos,r1,2026-11-18,referencia,5,1,90,1001,35,37,11.23,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r2,2026-11-18,referencia,5,1,90,992,35,36,11.13,0.00,atende,p95 36 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r3,2026-11-18,referencia,5,1,90,1007,36,37,11.30,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r1,2026-11-18,carga,20,2,90,3880,35,37,43.51,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r2,2026-11-18,carga,20,2,90,3918,35,37,43.93,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r3,2026-11-18,carga,20,2,90,3887,35,37,43.59,0.00,atende,p95 37 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r1,2026-11-18,estresse,50,5,90,9490,40,75,106.42,0.02,atende,p95 75 ms <= 500 e falhas 0.02% <= 1%
+Desafio B - minicursos,r2,2026-11-18,estresse,50,5,90,9534,40,71,106.83,0.00,atende,p95 71 ms <= 500 e falhas 0.00% <= 1%
+Desafio B - minicursos,r3,2026-11-18,estresse,50,5,90,9520,40,72,106.66,0.01,atende,p95 72 ms <= 500 e falhas 0.01% <= 1%
+Desafio B - minicursos,r1,2026-11-22,estresse,100,10,18,2717,120,140,149.08,24.00,nao atende,falhas 24.00% > 1% (todas HTTP 503); interrompido pelo criterio de parada (falhas > 20% por 10 s) apos 18 s; p95 140 ms atende
+Desafio B - minicursos,r2,2026-11-22,estresse,100,10,18,2698,110,140,148.40,23.54,nao atende,falhas 23.54% > 1% (todas HTTP 503); interrompido pelo criterio de parada (falhas > 20% por 10 s) apos 18 s; p95 140 ms atende
+Desafio B - minicursos,r3,2026-11-22,estresse,100,10,19,2706,120,140,146.55,23.80,nao atende,falhas 23.80% > 1% (todas HTTP 503); interrompido pelo criterio de parada (falhas > 20% por 10 s) apos 19 s; p95 140 ms atende
+Desafio B - minicursos,r1,2026-11-22,recuperacao,20,2,90,3903,33,44,43.49,0.00,atende,p95 44 ms <= 500 e falhas 0.00% <= 1%; iniciada 1-2 s apos o estresse; voltou a meta desde a primeira janela (< 30 s)
+Desafio B - minicursos,r2,2026-11-22,recuperacao,20,2,90,3869,34,38,43.21,0.00,atende,p95 38 ms <= 500 e falhas 0.00% <= 1%; iniciada 1-2 s apos o estresse; voltou a meta desde a primeira janela (< 30 s)
+Desafio B - minicursos,r3,2026-11-22,recuperacao,20,2,90,3876,34,38,43.71,0.00,atende,p95 38 ms <= 500 e falhas 0.00% <= 1%; iniciada 1-2 s apos o estresse; voltou a meta desde a primeira janela (< 30 s)

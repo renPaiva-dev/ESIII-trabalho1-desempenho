@@ -1,0 +1,4 @@
+cenario,execucao,data,tipo_teste,usuarios,ritmo_r,duracao_s,requisicoes,p50_ms,p95_ms,req_s,falhas_pct,decisao,justificativa
+Desafio A - matricula,r1,2026-11-18,carga,100,10,120,3445,26,1500,28.63,0.00,nao atende,p95 geral 1500 ms > 800 e p95 comprovante 2900 ms > 1500
+Desafio A - matricula,r1,2026-11-18,pico,200 -> 20,200,120,4299,26,720,35.71,0.00,nao atende,p95 comprovante 3400 ms > 1500 (p95 geral 720 ms atende)
+Desafio A - matricula,r1,2026-11-18,estresse,25 -> 400,25,480,32386,25,260,67.38,0.00,nao atende,p95 comprovante 5300 ms > 1500; passa da meta a partir do degrau de 100 alunos
