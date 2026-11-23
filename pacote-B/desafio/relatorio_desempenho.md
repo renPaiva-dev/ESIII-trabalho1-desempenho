@@ -18,7 +18,7 @@ Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B �
 | Perfis (usuários, ritmo, duração) | Verificação: 1 usuário, 15 s. Referência: 5 usuários (r = 1/s), 90 s. Carga: 20 (r = 2/s), 90 s. Estresse 1: 50 (r = 5/s), 90 s. Estresse 2: 100 (r = 10/s), até 90 s. Recuperação: 20 (r = 2/s), 90 s, iniciada logo após o Estresse 2. Pico: não exigido no Desafio B. |
 | Repetições | 3 por patamar (r1, r2, r3), incluindo a verificação inicial. |
 | Metas (SLA) | p95 ≤ 500 ms; falhas ≤ 1%; recuperação às metas em até 30 s com 20 usuários. |
-| Critério de parada | Interromper se a máquina ficar instável, se as falhas passarem de 20% por 10 s ou se o p95 passar de 2000 ms por 10 s. Automatizado no script a partir de 22/11: a cada segundo ele calcula a taxa de falhas daquele segundo e o p95 recente; com 10 segundos seguidos acima do limite, encerra o teste e registra `[PARADA]` no log. |
+| Critério de parada | Interromper se a máquina ficar instável, se as falhas passarem de 20% por 10 s ou se o p95 passar de 2000 ms por 10 s. Automatizado no script a partir de 22/11: a cada segundo ele calcula a taxa de falhas daquele segundo e o p95 recente; com 10 segundos seguidos acima do limite, encerra o teste e registra `[PARADA]` no log. Em 23/11 esse trecho foi reescrito de forma mais simples, sem mudar a lógica nem a mensagem; um estresse de 100 usuários de conferência parou do mesmo jeito, aos 18 s. |
 
 Comando usado (exemplo da carga, repetição 1):
 

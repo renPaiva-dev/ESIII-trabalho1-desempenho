@@ -6,42 +6,53 @@ import logging
 
 import gevent
 from locust import HttpUser, task, between, events
-from locust.runners import WorkerRunner
 
-# Critério de parada do guia (p.7): interromper se as falhas passarem de 20%
-# por 10 s ou se o p95 passar de 2000 ms por 10 s.
-LIMITE_FALHAS = 0.20
-LIMITE_P95_MS = 2000
-SEGUNDOS_SEGUIDOS = 10
+# Critério de parada do guia (p.7): parar o teste se as falhas passarem de 20%
+# por 10 s seguidos ou se o p95 passar de 2000 ms por 10 s seguidos.
+# A função vigiar roda junto com o teste (gevent.spawn, como no exemplo da
+# documentação do Locust) e confere os números a cada 1 segundo.
+
+
+def vigiar(environment):
+    requisicoes_antes = 0
+    falhas_antes = 0
+    segundos_com_falhas = 0
+    segundos_com_p95_alto = 0
+
+    while True:
+        gevent.sleep(1)
+        total = environment.runner.stats.total
+
+        # requisições e falhas só do último segundo
+        requisicoes = total.num_requests - requisicoes_antes
+        falhas = total.num_failures - falhas_antes
+        requisicoes_antes = total.num_requests
+        falhas_antes = total.num_failures
+
+        if requisicoes > 0 and falhas / requisicoes > 0.20:
+            segundos_com_falhas += 1
+        else:
+            segundos_com_falhas = 0
+
+        p95 = total.get_current_response_time_percentile(0.95) or 0
+        if p95 > 2000:
+            segundos_com_p95_alto += 1
+        else:
+            segundos_com_p95_alto = 0
+
+        if segundos_com_falhas >= 10:
+            logging.warning("[PARADA] falhas acima de 20% por 10 s seguidos: teste interrompido (criterio de parada do plano)")
+            environment.runner.quit()
+            return
+        if segundos_com_p95_alto >= 10:
+            logging.warning("[PARADA] p95 acima de 2000 ms por 10 s seguidos: teste interrompido (criterio de parada do plano)")
+            environment.runner.quit()
+            return
 
 
 @events.init.add_listener
-def criterio_de_parada(environment, **_):
-    if isinstance(environment.runner, WorkerRunner):
-        return
-
-    def vigiar():
-        req_antes = falhas_antes = 0
-        seg_falhas = seg_p95 = 0
-        while True:
-            gevent.sleep(1)
-            total = environment.runner.stats.total
-            req = total.num_requests - req_antes
-            falhas = total.num_failures - falhas_antes
-            req_antes, falhas_antes = total.num_requests, total.num_failures
-            taxa = falhas / req if req else 0                       # falhas no último segundo
-            p95 = total.get_current_response_time_percentile(0.95) or 0
-            seg_falhas = seg_falhas + 1 if taxa > LIMITE_FALHAS else 0
-            seg_p95 = seg_p95 + 1 if p95 > LIMITE_P95_MS else 0
-            if seg_falhas >= SEGUNDOS_SEGUIDOS or seg_p95 >= SEGUNDOS_SEGUIDOS:
-                motivo = (f"falhas acima de {LIMITE_FALHAS:.0%}" if seg_falhas >= SEGUNDOS_SEGUIDOS
-                          else f"p95 acima de {LIMITE_P95_MS} ms")
-                logging.warning("[PARADA] %s por %d s seguidos: teste interrompido "
-                                "(criterio de parada do plano)", motivo, SEGUNDOS_SEGUIDOS)
-                environment.runner.quit()
-                return
-
-    gevent.spawn(vigiar)
+def iniciar_vigia(environment, **kwargs):
+    gevent.spawn(vigiar, environment)
 
 
 class Visitante(HttpUser):
