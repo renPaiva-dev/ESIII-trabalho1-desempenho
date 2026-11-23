@@ -38,7 +38,7 @@ python -m locust -f pacote-B/desafio/desafio_locust.py --host http://127.0.0.1:8
 
 ## 3. Resultados
 
-Fonte única: os arquivos `resultados/pacote-B/desafio/*_stats.csv` e `*_stats_history.csv` do Locust. Os totais impressos nos `.log` são um pouco maiores, porque incluem requisições terminadas durante o `--stop-timeout`; por isso não foram usados. Relatórios completos com gráficos em `resultados/pacote-B/desafio/*.html`. Uma linha por execução em `pacote-B/desafio/registro_resultados_desempenho.csv`.
+Fonte: os arquivos `resultados/pacote-B/desafio/*_stats.csv` e `*_stats_history.csv` do Locust. O p95 ao longo do tempo vem do gráfico dos relatórios HTML (p95 dos últimos ~10 s), porque o `stats_history.csv`, sem a opção `--csv-full-history`, grava o p95 acumulado desde o início da execução; já as colunas de req/s e falhas/s do `stats_history.csv` são do momento e foram usadas. Os totais impressos nos `.log` são um pouco maiores, porque incluem requisições terminadas durante o `--stop-timeout`; por isso não foram usados. Relatórios completos com gráficos em `resultados/pacote-B/desafio/*.html`. Uma linha por execução em `pacote-B/desafio/registro_resultados_desempenho.csv`.
 
 ### Exemplo resolvido B (catálogo)
 
@@ -57,14 +57,14 @@ Fonte única: os arquivos `resultados/pacote-B/desafio/*_stats.csv` e `*_stats_h
 
 No Estresse 2, o agregado inclui a rampa de 0 a 100 usuários (os primeiros ~9 s), por isso a vazão e a taxa de falhas ficam abaixo dos valores do patamar.
 
-### Patamar estável (janelas do `stats_history` depois que todos os usuários entraram)
+### Patamar estável (depois que todos os usuários entraram)
 
-| Patamar | p95 por janela | req/s | Falhas |
+| Patamar | p95 por janela (HTML) | req/s | Falhas |
 |---|---|---|---|
-| Carga 20 | 37–38 ms | 44,1–44,5 | 0% |
-| Estresse 50 | 71–81 ms | 108,1–108,3 | ≈ 0% |
-| Estresse 100 (cerca de 10 s, até a parada) | 140 ms | 191–193 (sucesso: 132) | 31% |
-| Recuperação 20 | 37–46 ms | 44,8–45,5 | 0% |
+| Carga 20 | 36–39 ms | 44,1–44,5 | 0% |
+| Estresse 50 | 65–87 ms | 108,1–108,3 | ≈ 0% |
+| Estresse 100 (cerca de 10 s, até a parada) | 130–140 ms | 191–193 (sucesso: 132) | 31% |
+| Recuperação 20 | 36–48 ms | 44,8–45,5 | 0% |
 
 ### Estresse 2: início das falhas e parada automática
 
@@ -93,9 +93,9 @@ Todas as falhas registradas foram `HTTP 503` ("Capacidade didática ocupada"). N
 |---|---|---|
 | r1 | 1 s (19:10:17 → 19:10:18) | p95 37 ms, 0 falhas |
 | r2 | 2 s (19:12:07 → 19:12:09) | p95 46 ms, 0 falhas |
-| r3 | 2 s (19:13:59 → 19:14:01) | p95 37 ms, 0 falhas |
+| r3 | 2 s (19:13:59 → 19:14:01) | p95 38 ms, 0 falhas |
 
-Em todas, o p95 ficou entre 37 e 46 ms e não houve falhas desde a primeira janela.
+Em todas, o p95 ficou entre 36 e 48 ms e não houve falhas desde a primeira janela.
 
 ## 4. Análise
 
@@ -110,7 +110,7 @@ Medido: os dois endpoints pioram juntos. O p95 de `cursos` e de `curso 1` foi ig
 Interpretação: os dois endpoints passam pelo mesmo limite do servidor, que aceita só 4 consultas ao mesmo tempo, cada uma com cerca de 30 ms de atraso artificial (`app.py`, linhas 10 e 29–32). Isso dá um teto teórico de 4 / 0,03 s ≈ 133 respostas por segundo, praticamente o valor medido (132). Com 50 usuários a demanda (≈ 107 req/s) ainda cabia nesse teto; a partir de 60–70 usuários passou dele, e o excedente virou 503.
 
 **O sistema se recuperou após o estresse? Em quanto tempo?**
-Medido: sim. Nas 3 repetições a recuperação começou 1 a 2 s depois da parada do estresse, e desde a primeira janela o p95 ficou entre 37 e 46 ms, sem falhas. A meta de voltar em até 30 s foi atendida. Os valores da recuperação (43,5 req/s em média) ficaram iguais aos da carga de 20 (43,7 req/s).
+Medido: sim. Nas 3 repetições a recuperação começou 1 a 2 s depois da parada do estresse, e desde a primeira janela o p95 ficou entre 36 e 48 ms, sem falhas. A meta de voltar em até 30 s foi atendida. Os valores da recuperação (43,5 req/s em média) ficaram iguais aos da carga de 20 (43,7 req/s).
 
 Interpretação: a recuperação é imediata porque o servidor não acumula fila nem estado com a sobrecarga: quem não consegue vaga recebe 503 na hora.
 

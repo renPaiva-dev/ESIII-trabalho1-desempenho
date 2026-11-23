@@ -4,8 +4,9 @@ Equipe: Renato de Paiva Belarmino, Alisson Gabriel · Projeto: StockMaster (ES I
 
 O StockMaster é o sistema de estoque e vendas da equipe: uma API REST em Java/Spring Boot
 com banco H2 em memória. Ele já tem interface HTTP, então não foi preciso criar adaptador:
-o Locust chama a API original. A única mudança no código foi corrigir o erro que impedia a
-compilação (DEF-04 do relatório funcional).
+o Locust chama a API original. No código Java, a única mudança foi corrigir o erro que impedia a
+compilação (DEF-04 do relatório funcional). As páginas `produtos.html` e `venda.html` em
+`src/main/resources/static/` foram criadas para os testes funcionais (Trabalho 2) e não são usadas aqui.
 
 ## 1. Plano (definido antes de executar)
 

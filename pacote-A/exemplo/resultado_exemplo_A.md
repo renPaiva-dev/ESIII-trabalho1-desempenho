@@ -31,7 +31,9 @@ p95 por endpoint, em ms:
 | Requisições / req/s | 2805 / 23,3 | 2740 / 22,8 | 18917 / 62,9 | 18822 / 62,6 |
 | Falhas | 0 | 0 | 0 | 0 |
 
-O p95 por janela do estresse (`resultados/pacote-A/exemplo/estresse_stats_history.csv`) ficou entre 49 e 110 ms em todos os degraus, e a vazão subiu em linha reta de 11,9 req/s (25 usuários) a 112,4 req/s (250 usuários).
+No gráfico do relatório HTML do estresse (`resultados/pacote-A/exemplo/estresse.html`, p95 dos últimos ~10 s), o p95 geral subiu de 57 ms (25 usuários) até 470 ms (150 usuários) e depois caiu para 38 a 61 ms até o fim. A vazão subiu quase em linha reta, de 10 req/s (25 usuários) a 112 req/s (250 usuários). A queda do p95 não é melhora: é o mesmo efeito explicado na lição abaixo (o relatório de vendas vira uma parte pequena do total e sai do p95).
+
+Observação: o arquivo `estresse_stats_history.csv` não serve para ver o p95 por degrau. Sem a opção `--csv-full-history`, o Locust grava nele o p95 acumulado desde o início do teste, que muda devagar (ficou entre 49 e 110 ms).
 
 ## Conclusão
 

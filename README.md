@@ -140,7 +140,7 @@ mvn package -DskipTests          # gera target/stockMaster-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
-A bateria completa (Git Bash no Windows, ou bash no Linux) reinicia o StockMaster antes de cada repetição, porque o banco
+A bateria completa roda no **Git Bash do Windows** (o script usa `netstat` e `taskkill`, que só existem lá). Ela reinicia o StockMaster antes de cada repetição, porque o banco
 H2 em memória volta a zero. Ela roda referência (5), carga (20), estresse (50 e 100) e recuperação (20), com 90 s cada,
 e grava os resultados em `resultados/projeto-anterior/`. Leva cerca de 25 minutos.
 
