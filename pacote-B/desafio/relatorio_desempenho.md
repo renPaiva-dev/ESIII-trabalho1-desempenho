@@ -1,8 +1,8 @@
 # Plano e Relatório de Teste de Desempenho
 
-Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B – Desafio B (consulta de minicursos)   Data: 18/11/2026 e 22/11/2026
+Equipe: Renato de Paiva Belarmino e Alisson Gabriel   Pacote/Projeto: Pacote B – Desafio B (consulta de minicursos)   Data: 17/11/2026 (plano); 18/11/2026 e 22/11/2026 (execuções)
 
-> Observação: este documento foi escrito depois das execuções. O plano abaixo registra exatamente os parâmetros que foram usados (definidos pelo guia, seção Desafio B, e pelo script `pacote-B/desafio/desafio_locust.py`). Nada foi ajustado depois de ver os resultados.
+> Observação: o plano (seção 1) foi escrito em 17/11/2026, antes das execuções, no modelo da disciplina. As execuções seguiram esses parâmetros (operações, proporção, fases, repetições e metas). A exceção foi o critério de parada, que na rodada de 18/11 não foi aplicado (ver abaixo).
 >
 > Na primeira rodada (18/11) o critério de parada não estava automatizado e o Estresse 2 rodou os 90 s inteiros, acima do limite de falhas. Em 22/11 acrescentamos a parada automática ao script e **refizemos o Estresse 2 e a Recuperação** (3 repetições cada). As execuções originais desses dois patamares foram guardadas em `resultados/pacote-B/desafio/execucao_18-11_sem_parada/`.
 
@@ -125,7 +125,6 @@ Interpretação: o sistema tem atraso fixo e não usa banco nem disco, por isso 
 
 - **Duas máquinas.** O Estresse 2 e a Recuperação foram refeitos em 22/11 em outra máquina (ver Ambiente): em 18/11 um notebook com Ubuntu, i7-13620H e 16 GB; em 22/11 um com Windows 11, i5 e 8 GB. A comparação entre esses patamares e os de 18/11 deve ser feita com cuidado. Mesmo assim, os números que importam bateram: a recuperação deu os mesmos valores da carga de 18/11 (43,5 contra 43,7 req/s) e as execuções originais do Estresse 2 tiveram a mesma taxa de falhas no patamar (≈ 31%) e vazão parecida (186–187 req/s em 18/11, contra 191–193 req/s em 22/11). Isso é esperado, porque o limite do sistema é artificial e não depende do processador.
 - As execuções originais do Estresse 2 (18/11, em `resultados/pacote-B/desafio/execucao_18-11_sem_parada/`) não respeitaram o critério de parada: rodaram os 90 s com ≈ 31% de falhas. Foram substituídas pelas de 22/11 e mantidas só como registro.
-- O plano foi registrado depois das execuções (ver observação no início).
 - Servidor e Locust rodaram na mesma máquina, disputando o mesmo processador.
 - O limite de 4 consultas simultâneas e o atraso de 30 ms são artificiais (o próprio README do pacote avisa). Os números servem para estudar as métricas, não para estimar a capacidade de um sistema real.
 - A verificação inicial foi feita uma vez e não tem arquivo `.log`.
