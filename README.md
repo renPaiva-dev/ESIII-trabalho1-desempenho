@@ -39,8 +39,9 @@ Cada relatório (`.md`) fica junto do teste correspondente. O `relatorio.pdf` re
 
 ## Preparação (uma vez)
 
-Os sistemas dos pacotes A e B vêm no **kit do professor** (`ESIII_Testes_Funcionais_v2`). Abaixo, `KIT` é a pasta
-onde o kit foi descompactado.
+Os sistemas dos pacotes A e B não estão neste repositório: eles estão no kit `ESIII_Testes_Funcionais.zip`,
+disponibilizado pelo professor na disciplina. Extraia o kit numa pasta sem acentos no caminho (como pede o Guia do
+Aluno, p.2). Abaixo, `KIT` é essa pasta.
 
 ```bash
 python -m venv .venv
