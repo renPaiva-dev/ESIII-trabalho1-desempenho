@@ -20,6 +20,8 @@ trabalho1-desempenho/
     exemplo/                     exemplo resolvido B (catálogo da biblioteca)
     desafio/                     desafio B (consulta de minicursos): locustfile, relatório e registro de resultados
   projeto-anterior/              StockMaster: código do sistema, locustfile, script da bateria, relatório e registro
+  sistemas/                      sistemas dos pacotes A e B (cópias sem alteração do kit do professor)
+    pacote-A/app.py  pacote-B/app.py + web/
   resultados/                    resultados brutos de cada execução (HTML, CSV e log do Locust)
     pacote-A/exemplo/  pacote-A/desafio/  pacote-B/exemplo/  pacote-B/desafio/  projeto-anterior/
   relatorio.pdf
@@ -39,9 +41,10 @@ Cada relatório (`.md`) fica junto do teste correspondente. O `relatorio.pdf` re
 
 ## Preparação (uma vez)
 
-Os sistemas dos pacotes A e B não estão neste repositório: eles estão no kit `ESIII_Testes_Funcionais.zip`,
-disponibilizado pelo professor na disciplina. Extraia o kit numa pasta sem acentos no caminho (como pede o Guia do
-Aluno, p.2). Abaixo, `KIT` é essa pasta.
+Os sistemas dos pacotes A e B estão na pasta `sistemas/`. São cópias, sem nenhuma alteração, dos arquivos do kit
+`ESIII_Testes_Funcionais.zip` do professor (`app.py` do Pacote A; `app.py` e a pasta `web/` do Pacote B), para que o
+repositório rode sem o kit. No Pacote B, a pasta `web/` precisa ficar ao lado do `app.py`. Rode os comandos na raiz
+do repositório, e use uma pasta sem acentos no caminho (como pede o Guia do Aluno, p.2).
 
 ```bash
 python -m venv .venv
@@ -56,12 +59,12 @@ Os comandos abaixo são para bash. No PowerShell, troque `VAR=valor comando` por
 
 ---
 
-## Pacote A (sistema em `KIT/02_Pacote_A_SaborExpress_Matricula/app/app.py`, porta 5000)
+## Pacote A (sistema em `sistemas/pacote-A/app.py`, porta 5000)
 
 Num terminal separado, deixe o sistema rodando:
 
 ```bash
-python KIT/02_Pacote_A_SaborExpress_Matricula/app/app.py
+python sistemas/pacote-A/app.py
 ```
 
 Antes de **cada** execução, zere os dados: `curl -X POST http://127.0.0.1:5000/api/admin/reset`
@@ -93,10 +96,10 @@ resultado do teste e não um erro do script. Relatório: `pacote-A/desafio/relat
 
 ---
 
-## Pacote B (sistema em `KIT/03_Pacote_B_Biblioteca_Minicursos/app.py`, porta 8000)
+## Pacote B (sistema em `sistemas/pacote-B/app.py`, porta 8000)
 
 ```bash
-python KIT/03_Pacote_B_Biblioteca_Minicursos/app.py
+python sistemas/pacote-B/app.py
 ```
 
 ### Exemplo resolvido B – Catálogo
